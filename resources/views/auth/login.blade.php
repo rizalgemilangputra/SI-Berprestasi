@@ -14,11 +14,7 @@
                         <div class="form-control-icon">
                             <i class="bi bi-person"></i>
                         </div>
-                        @error('email')
-                            <div id="validation" class="invalid-feedback">
-                                {{$message}}
-                            </div>
-                        @enderror
+
                     </div>
                     <div class="form-group position-relative has-icon-left mb-4">
                         <input type="password" class="form-control form-control-xl" placeholder="Password" name="password" required>

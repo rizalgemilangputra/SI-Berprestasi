@@ -1,6 +1,12 @@
 # SI-Berprestasi
 
 ## Instalasi
+Dependencies:
+```
+- PHP Version 7.4
+```
+
+## Instalasi
 Clone repository:
 ```
 git clone https://github.com/rizalgemilangputra/SI-Berprestasi.git

@@ -1,6 +1,6 @@
 # SI-Berprestasi
 
-## Instalasi
+## Requirement
 Dependencies:
 ```
 - PHP Version 7.4
@@ -24,10 +24,21 @@ setelah itu, install package:
 composer install
 ```
 
+dan jalankan perintah:
+```
+php artisan migrate
+php artisan db:seeder
+```
+
 ## Menjalankan
 Development:
 ```
 # start Laravel
 php artisan serve
 ```
-Akses aplikasi pada url `http://127.0.0.1:8000/`
+Akses aplikasi:
+```
+Url         : http://127.0.0.1:8000/
+Email       : kesiswaan@gmail.com
+Password    : kesiswaan@2022
+```

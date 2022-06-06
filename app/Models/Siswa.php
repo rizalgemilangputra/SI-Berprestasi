@@ -15,4 +15,6 @@ class Siswa extends Model
      * @var string
      */
     protected $table = 'siswa';
+
+    protected $fillable = ['no_induk', 'nama', 'rerata_nilai', 'nilai_absensi', 'nilai_sikap', 'nilai_ekstrakulikuler'];
 }

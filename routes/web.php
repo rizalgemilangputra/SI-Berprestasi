@@ -24,5 +24,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('siswa')->group(function() {
         Route::get('/', [SiswaController::class, 'index']);
+        Route::post('/', [SiswaController::class, 'store']);
     });
 });

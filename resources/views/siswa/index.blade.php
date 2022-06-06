@@ -15,7 +15,22 @@
                         </button>
                     </div>
                     <div class="card-content px-4 pb-4">
-                        <!-- table striped -->
+
+
+                        <form action="{{ url('siswa/') }}" method="GET">
+                            <div class="row d-flex flex-row-reverse">
+                                <div class="col-4">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="Cari No. Induk Siswa"
+                                            aria-label="Cari No. Induk Siswa" aria-describedby="basic-addon2" name="cari" value="{{ Request::get('cari') }}">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-primary">Cari</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
                         <div class="table-responsive">
                             <table class="table table-striped mb-0">
                                 <thead>
@@ -30,36 +45,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-bold-500">10114024</td>
-                                        <td>Rizal Gemilang Putra</td>
-                                        <td>20</td>
-                                        <td>A</td>
-                                        <td>B</td>
-                                        <td>C</td>
-                                        <td>
-                                            <a href="#">
-                                                <i class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                    data-feather="mail">1</i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-bold-500">10114000</td>
-                                        <td>Revina Nurjanah</td>
-                                        <td>20</td>
-                                        <td>A</td>
-                                        <td>B</td>
-                                        <td>C</td>
-                                        <td>
-                                            <a href="#">
-                                                <i class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                    data-feather="mail">1</i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($students as $student)
+                                        <tr>
+                                            <td class="text-bold-500">{{ $student->no_induk }}</td>
+                                            <td>{{ $student->nama }}</td>
+                                            <td>{{ $student->rerata_nilai }}</td>
+                                            <td>{{ $student->nilai_absensi }}</td>
+                                            <td>{{ $student->nilai_sikap }}</td>
+                                            <td>{{ $student->nilai_ekstrakulikuler }}</td>
+                                            <td>
+                                                <a href="#">
+                                                    <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                        data-feather="mail">1</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="mt-4 d-flex justify-content-center">
+                            {{ $students->links() }}
                         </div>
                     </div>
                 </div>

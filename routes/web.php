@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailNilaiController;
+use App\Http\Controllers\GenerateLaporanController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -45,5 +47,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [DetailNilaiController::class, 'index'])->name('manage.detail_nilai');
         Route::get('/edit/{no_induk}/{tahun_ajaran}/{kelas}', [DetailNilaiController::class, 'edit'])->name('manage.detail_nilai.edit');
         Route::post('/{no_induk}/{tahun_ajaran}/{kelas}', [DetailNilaiController::class, 'update'])->name('manage.detail_nilai.update');
+    });
+
+    Route::prefix('generate_laporan')->group(function() {
+        Route::get('/', [GenerateLaporanController::class, 'index'])->name('manage.generate_laporan');
+        Route::post('/generate', [GenerateLaporanController::class, 'generate'])->name('manage.generate_laporan.generate');
+    });
+
+    Route::prefix('laporan')->group(function() {
+        Route::get('/', [LaporanController::class, 'index'])->name('manage.laporan');
     });
 });

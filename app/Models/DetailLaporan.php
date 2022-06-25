@@ -17,4 +17,9 @@ class DetailLaporan extends Model
     protected $table = 'detail_laporan';
 
     protected $fillable = ['id_laporan', 'id_siswa', 'kelas', 'nilai_preferensi', 'rank'];
+
+    public function laporan()
+    {
+        return $this->hasOne(Laporan::class, 'id', 'id_laporan');
+    }
 }

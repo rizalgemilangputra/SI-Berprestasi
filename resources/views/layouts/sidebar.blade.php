@@ -3,7 +3,7 @@
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
                 <div class="logo">
-                    <a href="{{ url('/') }}"><img src="{{asset('assets/images/logo/logo.png')}}" alt="Logo" srcset=""></a>
+                    <a href="{{ url('/') }}" style="font-size: 0.7em !important;">Sistem Informasi</a>
                 </div>
                 <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -43,14 +43,14 @@
                 </li>
 
                 <li class="sidebar-item {{ (request()->is('generate_laporan*')) ? 'active' : '' }}">
-                    <a href="index.html" class='sidebar-link'>
+                    <a href="{{ route('manage.generate_laporan') }}" class='sidebar-link'>
                         <i class="bi bi-gear-fill"></i>
                         <span>Generate Laporan Siswa Berprestasi</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item {{ (request()->is('laporan*')) ? 'active' : '' }}">
-                    <a href="index.html" class='sidebar-link'>
+                    <a href="{{ route('manage.laporan') }}" class='sidebar-link'>
                         <i class="bi bi-award-fill"></i>
                         <span>Laporan Siswa Berprestasi</span>
                     </a>

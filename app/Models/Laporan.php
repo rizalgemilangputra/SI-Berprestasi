@@ -17,4 +17,9 @@ class Laporan extends Model
     protected $table = 'laporan';
 
     protected $fillable = ['tahun_ajaran', 'jenis'];
+
+    public function detail()
+    {
+        return $this->hasMany(DetailLaporan::class, 'id_laporan', 'id');
+    }
 }

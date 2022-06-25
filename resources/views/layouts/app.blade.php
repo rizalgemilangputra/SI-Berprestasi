@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MTs Al-Ikhlas</title>
+    <title>MTs Al-Ikhlas - @yield('title')</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -32,7 +32,26 @@
             </header>
 
             <div class="page-heading">
-                <h3>@yield('title')</h3>
+                <h3 class="mb-4">@yield('title')</h3>
+
+                @if (Session::has('status_alert'))
+                    @if (Session::get('status_alert') == 'success')
+                        <div class="alert alert-success alert-dismissible show fade">
+                            {{ Session::get('message_alert') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @elseif (Session::get('status_alert') == 'warning')
+                        <div class="alert alert-warning alert-dismissible show fade">
+                            {{ Session::get('message_alert') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @else
+                        <div class="alert alert-danger alert-dismissible show fade">
+                            {{ Session::get('message_alert') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                @endif
             </div>
 
             @yield('content')
@@ -54,5 +73,5 @@
     <script src="{{asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('assets/js/mazer.js')}}"></script>
-    @yield('javascript')
+    @stack('javascript')
 </body>

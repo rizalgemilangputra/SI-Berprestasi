@@ -60,7 +60,7 @@
                             </table>
                         </div>
                         <div class="mt-4 d-flex justify-content-center">
-                            {{ $students->links() }}
+                            {{ $students ? $students->links() : '' }}
                         </div>
                     </div>
                 </div>

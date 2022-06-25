@@ -23,7 +23,7 @@
 
                 <li class="sidebar-item {{ (request()->is('user*')) ? 'active' : '' }}">
                     <a href="{{ route('manage.user') }}" class='sidebar-link'>
-                        <i class="bi bi-person-plus-fill"></i>
+                        <i class="bi bi-person-fill"></i>
                         <span>Manajemen Pengguna</span>
                     </a>
                 </li>

@@ -61,6 +61,9 @@
                     </tbody>
                 </table>
             </div>
+            <div class="mt-4 d-flex justify-content-center">
+                {{ $reports ? $reports->links() : '' }}
+            </div>
         </div>
     </div>
     @include('generate_laporan.modal_generate')

@@ -55,6 +55,14 @@
                                 <option value="2" {{$detail->kelas == 2 ? 'selected' : ''}}>Kelas 8</option>
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            <label for="is_active">Aktif</label>
+                            <select class="form-select" name="is_active" id="is_active" required>
+                                <option value="0" {{$detail->is_active == 0 ? 'selected' : ''}}>Tidak Aktif</option>
+                                <option value="1" {{$detail->is_active == 1 ? 'selected' : ''}}>Aktif</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div><button type="submit" class="btn btn-success">Simpan</button></div>
@@ -73,27 +81,38 @@
         $("#tambah-tahun-ajaran").click(function () {
             var html = '';
             html += '<div class="card p-4">';
-            html += '<form id="form-edit-data-siswa" method="POST" action="{{ route("manage.siswa.update.tahun_ajaran", ["no_induk" => $student->no_induk]) }}">';
-            html += '@csrf';
-            html += '@method("POST")';
-            html += '<div class="row" id="detail">';
-            html += '<div class="form-group">';
-            html += '<label for="tahun_ajaran">Tahun Ajaran</label>';
-            html += '<select class="form-select" name="tahun_ajaran" id="tahun_ajaran" required>';
-            html += '<option selected value="1">2021/2022</option>';
-            html += '<option selected value="2">2022/2023</option>';
-            html += '</select>';
-            html += '</div>';
-            html += '<div class="form-group">';
-            html += '<label for="kelas">Kelas</label>';
-            html += '<select class="form-select" name="kelas" id="kelas" required>';
-            html += '<option value="1">Kelas 7</option>';
-            html += '<option value="2">Kelas 8</option>';
-            html += '</select>';
-            html += '</div>';
-            html += '</div>';
-            html += '<div><button type="submit" class="btn btn-success">Simpan</button></div>';
-            html += '</form>';
+                html += '<form id="form-edit-data-siswa" method="POST" action="{{ route("manage.siswa.update.tahun_ajaran", ["no_induk" => $student->no_induk]) }}">';
+                    html += '@csrf';
+                    html += '@method("POST")';
+                    html += '<div class="row" id="detail">';
+
+                        html += '<div class="form-group">';
+                            html += '<label for="tahun_ajaran">Tahun Ajaran</label>';
+                            html += '<select class="form-select" name="tahun_ajaran" id="tahun_ajaran" required>';
+                                html += '<option value="1">2021/2022</option>';
+                                html += '<option value="2">2022/2023</option>';
+                            html += '</select>';
+                        html += '</div>';
+
+                        html += '<div class="form-group">';
+                            html += '<label for="kelas">Kelas</label>';
+                            html += '<select class="form-select" name="kelas" id="kelas" required>';
+                                html += '<option value="1">Kelas 7</option>';
+                                html += '<option value="2">Kelas 8</option>';
+                            html += '</select>';
+                        html += '</div>';
+
+                        html += '<div class="form-group">';
+                            html += '<label for="is_active">Aktif</label>';
+                            html += '<select class="form-select" name="is_active" id="is_active" required>';
+                                html += '<option value="0">Tidak Aktif</option>';
+                                html += '<option value="1" selected>Aktif</option>';
+                            html += '</select>';
+                        html += '</div>';
+                    html += '</div>';
+
+                    html += '<div><button type="submit" class="btn btn-success">Simpan</button></div>';
+                html += '</form>';
             html += '</div>';
             $("#detail-tahun-ajaran").append(html);
         });

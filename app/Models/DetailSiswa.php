@@ -16,7 +16,7 @@ class DetailSiswa extends Model
      */
     protected $table = 'detail_siswa';
 
-    protected $fillable = ['id_siswa', 'tahun_ajaran', 'kelas', 'nilai_rerata', 'nilai_absensi', 'nilai_sikap', 'nilai_ekstrakulikuler'];
+    protected $fillable = ['id_siswa', 'tahun_ajaran', 'kelas', 'nilai_rerata', 'nilai_absensi', 'nilai_sikap', 'nilai_ekstrakulikuler', 'is_active'];
 
     public function siswa()
     {

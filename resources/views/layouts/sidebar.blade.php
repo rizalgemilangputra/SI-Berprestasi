@@ -21,40 +21,50 @@
                     </a>
                 </li> --}}
 
-                <li class="sidebar-item {{ (request()->is('user*')) ? 'active' : '' }}">
-                    <a href="{{ route('manage.user') }}" class='sidebar-link'>
-                        <i class="bi bi-person-fill"></i>
-                        <span>Manajemen Pengguna</span>
-                    </a>
-                </li>
+                @if (auth()->user()->hak_akses == 'kesiswaan')
+                    <li class="sidebar-item {{ (request()->is('user*')) ? 'active' : '' }}">
+                        <a href="{{ route('manage.user') }}" class='sidebar-link'>
+                            <i class="bi bi-person-fill"></i>
+                            <span>Informasi Pengguna</span>
+                        </a>
+                    </li>
+                @endif
 
-                <li class="sidebar-item {{ (request()->is('siswa*')) ? 'active' : '' }}">
-                    <a href="{{ route('manage.siswa') }}" class='sidebar-link'>
-                        <i class="bi bi-person-plus-fill"></i>
-                        <span>Menajemen Siswa</span>
-                    </a>
-                </li>
+                @if (auth()->user()->hak_akses == 'kesiswaan')
+                    <li class="sidebar-item {{ (request()->is('siswa*')) ? 'active' : '' }}">
+                        <a href="{{ route('manage.siswa') }}" class='sidebar-link'>
+                            <i class="bi bi-person-plus-fill"></i>
+                            <span>Informasi Siswa</span>
+                        </a>
+                    </li>
+                @endif
 
-                <li class="sidebar-item {{ (request()->is('detail_nilai*')) ? 'active' : '' }}">
-                    <a href="{{ route('manage.detail_nilai') }}" class='sidebar-link'>
-                        <i class="bi bi-person-lines-fill"></i>
-                        <span>Tambah Nilai Siswa</span>
-                    </a>
-                </li>
+                @if (auth()->user()->hak_akses == 'kesiswaan' || auth()->user()->hak_akses == 'walikelas')
+                    <li class="sidebar-item {{ (request()->is('detail_nilai*')) ? 'active' : '' }}">
+                        <a href="{{ route('manage.detail_nilai') }}" class='sidebar-link'>
+                            <i class="bi bi-person-lines-fill"></i>
+                            <span>Tambah Nilai Siswa</span>
+                        </a>
+                    </li>
+                @endif
 
-                <li class="sidebar-item {{ (request()->is('generate_laporan*')) ? 'active' : '' }}">
-                    <a href="{{ route('manage.generate_laporan') }}" class='sidebar-link'>
-                        <i class="bi bi-gear-fill"></i>
-                        <span>Generate Laporan Siswa Berprestasi</span>
-                    </a>
-                </li>
+                @if (auth()->user()->hak_akses == 'kesiswaan')
+                    <li class="sidebar-item {{ (request()->is('generate_laporan*')) ? 'active' : '' }}">
+                        <a href="{{ route('manage.generate_laporan') }}" class='sidebar-link'>
+                            <i class="bi bi-gear-fill"></i>
+                            <span>Generate Laporan Siswa Berprestasi</span>
+                        </a>
+                    </li>
+                @endif
 
-                <li class="sidebar-item {{ (request()->is('laporan*')) ? 'active' : '' }}">
-                    <a href="{{ route('manage.laporan') }}" class='sidebar-link'>
-                        <i class="bi bi-award-fill"></i>
-                        <span>Laporan Siswa Berprestasi</span>
-                    </a>
-                </li>
+                @if (auth()->user()->hak_akses == 'kesiswaan' || auth()->user()->hak_akses == 'kepalasekolah')
+                    <li class="sidebar-item {{ (request()->is('laporan*')) ? 'active' : '' }}">
+                        <a href="{{ route('manage.laporan') }}" class='sidebar-link'>
+                            <i class="bi bi-award-fill"></i>
+                            <span>Laporan Siswa Berprestasi</span>
+                        </a>
+                    </li>
+                @endif
 
                 <li class="sidebar-item  ">
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class='sidebar-link'>

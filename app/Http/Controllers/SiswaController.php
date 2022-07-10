@@ -60,6 +60,7 @@ class SiswaController extends Controller
             'id_siswa'      => $siswa->id,
             'tahun_ajaran'  => $request->tahun_ajaran,
             'kelas'         => $request->kelas,
+            'is_active'     => 1,
         ]);
 
         $responseAlert = [
@@ -118,5 +119,44 @@ class SiswaController extends Controller
         $student = Siswa::where('no_induk', $request->no_induk)->first();
 
         return view('siswa.detail', compact('student'));
+    }
+
+    public function updateTahunAjaran(Request $request)
+    {
+        $no_induk = $request->route('no_induk');
+        $id = $request->route('id');
+
+        $student = Siswa::where('no_induk', $no_induk)->first();
+
+        if ($request->is_active) {
+            DetailSiswa::where('id_siswa', $student->id)->update(['is_active' => 0]);
+        } else {
+            $check = DetailSiswa::where('id_siswa', $student->id)->where('is_active', 1)->count();
+            if ($check < 1) {
+                $request->is_active = 1;
+            }
+        }
+
+        if (isset($id)) {
+            DetailSiswa::where('id', $id)->update([
+                'tahun_ajaran'  => $request->tahun_ajaran,
+                'kelas'         => $request->kelas,
+                'is_active'     => $request->is_active,
+            ]);
+        } else {
+            DetailSiswa::create([
+                'id_siswa'      => $student->id,
+                'tahun_ajaran'  => $request->tahun_ajaran,
+                'kelas'         => $request->kelas,
+                'is_active'     => $request->is_active,
+            ]);
+        }
+
+        $responseAlert = [
+            'status_alert'    => 'success',
+            'message_alert'   => 'Berhasil menambah atau mengubah tahun ajaran siswa'
+        ];
+
+        return redirect()->route('manage.siswa.edit', ['no_induk' => $no_induk])->with($responseAlert);
     }
 }

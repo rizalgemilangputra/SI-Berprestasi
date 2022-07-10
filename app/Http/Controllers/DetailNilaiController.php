@@ -17,12 +17,14 @@ class DetailNilaiController extends Controller
                     ->where('siswa.no_induk', 'like', $request->cari . '%')
                     ->where('detail_siswa.tahun_ajaran', $request->tahun_ajaran)
                     ->where('detail_siswa.kelas', $request->kelas)
+                    ->where('detail_siswa.is_active', 1)
                     ->orderBy('siswa.no_induk', 'ASC')
                     ->paginate(10)->appends(['tahun_ajaran' => $request->tahun_ajaran , 'kelas' => $request->kelas, 'cari' => $request->cari]);
             } else {
                 $students = DetailSiswa::join('siswa', 'detail_siswa.id_siswa' , '=', 'siswa.id')
                     ->where('detail_siswa.tahun_ajaran', $request->tahun_ajaran)
                     ->where('detail_siswa.kelas', $request->kelas)
+                    ->where('detail_siswa.is_active', 1)
                     ->orderBy('siswa.no_induk', 'ASC')
                     ->paginate(10)->appends(['tahun_ajaran' => $request->tahun_ajaran , 'kelas' => $request->kelas, 'cari' => $request->cari]);
             }

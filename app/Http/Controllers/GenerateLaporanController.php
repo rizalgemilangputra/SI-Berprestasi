@@ -54,10 +54,12 @@ class GenerateLaporanController extends Controller
         return redirect()->route('manage.generate_laporan')->with($responseAlert);
     }
 
-    private function perTahunAjaran($request) {
+    private function perTahunAjaran($request)
+    {
 
         $data = DetailSiswa::join('siswa', 'detail_siswa.id_siswa', '=' , 'siswa.id')
             ->where('detail_siswa.tahun_ajaran', $request->tahun_ajaran)
+            ->where('detail_siswa.is_active', 1)
             ->get();
 
         $result = $this->process($data);
@@ -78,7 +80,8 @@ class GenerateLaporanController extends Controller
         }
     }
 
-    private function perKelas($request) {
+    private function perKelas($request)
+    {
 
         $classes = Kelas::$kelas;
 
@@ -87,6 +90,7 @@ class GenerateLaporanController extends Controller
             $data = DetailSiswa::join('siswa', 'detail_siswa.id_siswa', '=' , 'siswa.id')
             ->where('detail_siswa.tahun_ajaran', $request->tahun_ajaran)
             ->where('detail_siswa.kelas', $key)
+            ->where('detail_siswa.is_active', 1)
             ->get();
 
             $result = $this->process($data);
@@ -168,7 +172,8 @@ class GenerateLaporanController extends Controller
         return $result;
     }
 
-    private function setRank($students) {
+    private function setRank($students)
+    {
 
         usort($students, function($a, $b) {return $a['v'] < $b['v'];});
 
@@ -192,7 +197,8 @@ class GenerateLaporanController extends Controller
         return $students;
     }
 
-    private function setPoint($nilai, $type) {
+    private function setPoint($nilai, $type)
+    {
         if ($type == 'sikap') {
             switch ($nilai) {
                 case 'A':

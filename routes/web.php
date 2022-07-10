@@ -41,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/update', [SiswaController::class, 'update'])->name('manage.siswa.update');
         Route::get('/delete/{no_induk}', [SiswaController::class, 'delete'])->name('manage.siswa.delete');
         Route::get('/{no_induk}', [SiswaController::class, 'detail'])->name('manage.siswa.detail');
+        Route::post('/update-tahun-ajaran/{no_induk}/{id?}', [SiswaController::class, 'updateTahunAjaran'])->name('manage.siswa.update.tahun_ajaran');
     });
 
     Route::prefix('detail_nilai')->group(function() {

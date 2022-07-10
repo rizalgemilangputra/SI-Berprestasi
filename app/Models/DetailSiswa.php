@@ -22,4 +22,10 @@ class DetailSiswa extends Model
     {
         return $this->hasOne(Siswa::class, 'id', 'id_siswa');
     }
+
+    public static function getLastId()
+    {
+        $detail = DetailSiswa::orderBy('id', 'DESC')->first('id');
+        return $detail->id;
+    }
 }

@@ -119,4 +119,32 @@ class SiswaController extends Controller
 
         return view('siswa.detail', compact('student'));
     }
+
+    public function updateTahunAjaran(Request $request)
+    {
+        $no_induk = $request->route('no_induk');
+        $id = $request->route('id');
+
+        $student = Siswa::where('no_induk', $no_induk)->first();
+
+        if (isset($id)) {
+            DetailSiswa::where('id', $id)->update([
+                'tahun_ajaran'  => $request->tahun_ajaran,
+                'kelas'         => $request->kelas,
+            ]);
+        } else {
+            DetailSiswa::create([
+                'id_siswa'      => $student->id,
+                'tahun_ajaran'  => $request->tahun_ajaran,
+                'kelas'         => $request->kelas,
+            ]);
+        }
+
+        $responseAlert = [
+            'status_alert'    => 'success',
+            'message_alert'   => 'Berhasil menambah atau mengubah tahun ajaran siswa'
+        ];
+
+        return redirect()->route('manage.siswa.edit', ['no_induk' => $no_induk])->with($responseAlert);
+    }
 }

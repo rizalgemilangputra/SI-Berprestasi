@@ -46,6 +46,5 @@ Password    : kesiswaan@2022
 ## TO DO
 Yang akan dikerjan:
 ```
-- Manajemen Pengguna
-- Manajemen Role (Hak Akses)
+- Edit Pengguna
 ```

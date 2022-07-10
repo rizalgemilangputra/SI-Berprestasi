@@ -29,6 +29,29 @@ class GenerateLaporanController extends Controller
     public function generate(Request $request)
     {
 
+        $check = DetailSiswa::where('tahun_ajaran', $request->tahun_ajaran)->get();
+        if (!$check) {
+            $responseAlert = [
+                'status_alert' => 'warning',
+                'message_alert' => "Data siswa tidak ada!"
+            ];
+
+            return redirect()->route('manage.generate_laporan')->with($responseAlert);
+        }
+
+        foreach ($check as $data) {
+            if (!isset($data->nilai_rerata) || !isset($data->nilai_absensi) || !isset($data->nilai_sikap)) {
+                $responseAlert = [
+                    'status_alert' => 'warning',
+                    'message_alert' => "Data nilai siswa belum lengkap"
+                ];
+
+                return redirect()->route('manage.generate_laporan')->with($responseAlert);
+            }
+        }
+
+
+
         DB::beginTransaction();
         try {
             $check = Laporan::where('tahun_ajaran', $request->tahun_ajaran)->count();

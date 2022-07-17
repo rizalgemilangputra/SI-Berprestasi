@@ -85,42 +85,12 @@ class GenerateLaporanController extends Controller
             ->where('detail_siswa.is_active', 1)
             ->get();
 
-        $result = $this->process($data);
-
-        $report_tahun_ajaran = Laporan::create([
-            'tahun_ajaran'  => $request->tahun_ajaran,
-            'jenis'         => 'tahun_ajaran'
-        ]);
-
-        foreach ($result as $detail) {
-            DetailLaporan::create([
-                'id_laporan'        => $report_tahun_ajaran->id,
-                'id_siswa'          => $detail['id_siswa'],
-                'kelas'             => $detail['kelas'],
-                'nilai_preferensi'  => $detail['v'],
-                'rank'              => $detail['rank']
-            ]);
-        }
-    }
-
-    private function perKelas($request)
-    {
-
-        $classes = Kelas::$kelas;
-
-        foreach ($classes as $key => $class) {
-
-            $data = DetailSiswa::join('siswa', 'detail_siswa.id_siswa', '=' , 'siswa.id')
-            ->where('detail_siswa.tahun_ajaran', $request->tahun_ajaran)
-            ->where('detail_siswa.kelas', $key)
-            ->where('detail_siswa.is_active', 1)
-            ->get();
-
+        if (!$data->isEmpty()) {
             $result = $this->process($data);
 
             $report_tahun_ajaran = Laporan::create([
                 'tahun_ajaran'  => $request->tahun_ajaran,
-                'jenis'         => 'kelas'
+                'jenis'         => 'tahun_ajaran'
             ]);
 
             foreach ($result as $detail) {
@@ -131,6 +101,39 @@ class GenerateLaporanController extends Controller
                     'nilai_preferensi'  => $detail['v'],
                     'rank'              => $detail['rank']
                 ]);
+            }
+        }
+    }
+
+    private function perKelas($request)
+    {
+
+        $classes = Kelas::$kelas;
+
+        foreach ($classes as $key => $class) {
+            $data = DetailSiswa::join('siswa', 'detail_siswa.id_siswa', '=' , 'siswa.id')
+            ->where('detail_siswa.tahun_ajaran', $request->tahun_ajaran)
+            ->where('detail_siswa.kelas', $key)
+            ->where('detail_siswa.is_active', 1)
+            ->get();
+
+            if (!$data->isEmpty()) {
+                $result = $this->process($data);
+
+                $report_tahun_ajaran = Laporan::create([
+                    'tahun_ajaran'  => $request->tahun_ajaran,
+                    'jenis'         => 'kelas'
+                ]);
+
+                foreach ($result as $detail) {
+                    DetailLaporan::create([
+                        'id_laporan'        => $report_tahun_ajaran->id,
+                        'id_siswa'          => $detail['id_siswa'],
+                        'kelas'             => $detail['kelas'],
+                        'nilai_preferensi'  => $detail['v'],
+                        'rank'              => $detail['rank']
+                    ]);
+                }
             }
         }
     }

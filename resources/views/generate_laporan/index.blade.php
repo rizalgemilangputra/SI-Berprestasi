@@ -54,7 +54,7 @@
                         @foreach ($reports as $report)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ App\models\TahunAJaran::$tahun_ajaran[$report->tahun_ajaran] }}</td>
+                                <td>{{ App\models\TahunAjaran::$tahun_ajaran[$report->tahun_ajaran] }}</td>
                                 <td>{{ Request::get('jenis') == 'kelas' ? App\models\Kelas::$kelas[$report->detail[0]->kelas] : '' }}</td>
                             </tr>
                         @endforeach

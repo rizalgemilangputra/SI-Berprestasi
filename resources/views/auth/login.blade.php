@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="col-lg-7 d-none d-lg-block">
-            <div id="auth-right" style="height: 100vh !important; background-image: url('{{asset('assets/images/bg/kampus-unikom.jpg')}}');height: 100%;background-position: center;background-repeat: no-repeat;background-size: cover;">
+            <div id="auth-right" style="height: 100vh !important; background-image: url('{{asset('assets/images/bg/bg-login.jpg')}}');height: 100%;background-position: center;background-repeat: no-repeat;background-size: cover;">
             </div>
         </div>
     </div>

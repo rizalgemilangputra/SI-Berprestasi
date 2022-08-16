@@ -9,6 +9,7 @@ use App\Models\Laporan;
 use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class GenerateLaporanController extends Controller
 {
@@ -29,7 +30,7 @@ class GenerateLaporanController extends Controller
     public function generate(Request $request)
     {
 
-        $check = DetailSiswa::where('tahun_ajaran', $request->tahun_ajaran)->get();
+        $check = DetailSiswa::where('tahun_ajaran', $request->tahun_ajaran)->where('is_active', 1)->get();
         if (!$check) {
             $responseAlert = [
                 'status_alert' => 'warning',
@@ -116,6 +117,8 @@ class GenerateLaporanController extends Controller
             ->where('detail_siswa.kelas', $key)
             ->where('detail_siswa.is_active', 1)
             ->get();
+
+            Log::info($data);
 
             if (!$data->isEmpty()) {
                 $result = $this->process($data);

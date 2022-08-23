@@ -30,6 +30,7 @@
                         <select class="form-select" name="kelas" id="kelas">
                             <option value="1">Kelas 7</option>
                             <option value="2">Kelas 8</option>
+                            <option value="3">Kelas 9</option>
                         </select>
                     </div>
 

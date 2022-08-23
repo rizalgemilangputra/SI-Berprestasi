@@ -45,6 +45,7 @@
                 <select class="form-select @error('kelas') is-invalid @enderror" name="kelas" id="kelas" required>
                     <option value="1" {{old('kelas') == 1 ? 'selected' : ''}}>Kelas 7</option>
                     <option value="2" {{old('kelas') == 2 ? 'selected' : ''}}>Kelas 8</option>
+                    <option value="2" {{old('kelas') == 3 ? 'selected' : ''}}>Kelas 9</option>
                 </select>
                 @error('kelas')
                     <div class="invalid-feedback">

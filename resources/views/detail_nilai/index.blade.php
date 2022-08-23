@@ -24,6 +24,7 @@
                                                 <option selected>Pilih Kelas</option>
                                                 <option value="1" {{ Request::get('kelas') == 1 ? 'selected' : ''}}>Kelas 7</option>
                                                 <option value="2" {{ Request::get('kelas') == 2 ? 'selected' : ''}}>Kelas 8</option>
+                                                <option value="2" {{ Request::get('kelas') == 3 ? 'selected' : ''}}>Kelas 9</option>
                                             </select>
                                         </div>
                                     </div>

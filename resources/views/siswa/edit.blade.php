@@ -53,6 +53,7 @@
                             <select class="form-select" name="kelas" id="kelas" required>
                                 <option value="1" {{$detail->kelas == 1 ? 'selected' : ''}}>Kelas 7</option>
                                 <option value="2" {{$detail->kelas == 2 ? 'selected' : ''}}>Kelas 8</option>
+                                <option value="2" {{$detail->kelas == 3 ? 'selected' : ''}}>Kelas 9</option>
                             </select>
                         </div>
 

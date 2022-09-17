@@ -207,6 +207,7 @@ class GenerateLaporanController extends Controller
         usort($students, function($a, $b) {return $a['v'] < $b['v'];});
 
         $rank = 0;
+		$count = 1;
         foreach ($students as $key => $student) {
             if ($key == 0) {
                 $rank = 1;
@@ -215,10 +216,18 @@ class GenerateLaporanController extends Controller
             }
 
             if ($student['v'] == $students[$key-1]['v']) {
-                $rank = $rank;
-                $students[$key]['rank'] = $rank;
+                if ($count < 3 ) {
+					$rank = $rank;
+					$count++;
+					$students[$key]['rank'] = $rank;
+				} else {
+					$rank++;
+					$count = 1;
+					$students[$key]['rank'] = $rank;
+				}
             } else {
                 $rank++;
+				$count = 1;
                 $students[$key]['rank'] = $rank;
             }
         }

@@ -8,6 +8,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+
+Route::get('/command', function () {
+	// Artisan::call('migrate:fresh --seed');
+	Artisan::call('cache:clear');
+    return 'Hello World';
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class, 'index']);

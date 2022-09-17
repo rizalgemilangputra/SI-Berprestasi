@@ -33,6 +33,23 @@
                             <option value="3">Kelas 9</option>
                         </select>
                     </div>
+					
+					<div id="id-rank"  class="form-group d-none">
+                        <label for="kelas">Ranking</label>
+                        <select class="form-select" name="rank" id="rank">
+                            <option value="0">Semua Ranking</option>
+                            <option value="10">10</option>
+                            <option value="9">9</option>
+                            <option value="8">8</option>
+                            <option value="7">7</option>
+                            <option value="6">6</option>
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
 
                 </form>
             </div>
@@ -54,9 +71,11 @@
 
             if (value === 'tahun_ajaran') {
                 $('#id-tahun_ajaran').removeClass('d-none');
+                $('#id-rank').removeClass('d-none');
             } else if (value === 'kelas') {
                 $('#id-tahun_ajaran').removeClass('d-none');
                 $('#id-kelas').removeClass('d-none');
+                $('#id-rank').removeClass('d-none');
             }
 
         });
